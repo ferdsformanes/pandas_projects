@@ -1,4 +1,6 @@
-from flask import json
+# How to Convert API JSON Data to Excel Using Pandas (Python Tutorial)
+
+import json
 import requests
 import urllib3
 import pandas as pd
@@ -30,7 +32,7 @@ def get_devices(session):
     response = session.get(devices_url, verify=False)
     if response.status_code != 200:
         raise Exception("Failed to retrieve devices")
-    return response.json()
+    return response.json() # Convert API JSON response into a Python dictionary
 
 
 # --- Interactive IPython / Jupyter Steps ---
@@ -41,13 +43,11 @@ session = login()
 # Step 2: Get raw JSON data
 devices = get_devices(session)
 
-# import json
 # print(json.dumps(devices, indent=4))
 #  devices.keys()
 
-
-# Step 3: Convert JSON list into Pandas DataFrame
-df = pd.DataFrame(devices["data"])
+# Step 3: Convert list of dictionaries into a flat Pandas DataFrame
+df = pd.json_normalize(devices["data"]) # pd.json_normalize flattens nested JSON automatically
 
 df.head()  # Only show first 5 rows
 
