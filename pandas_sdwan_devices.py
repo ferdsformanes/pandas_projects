@@ -1,4 +1,4 @@
-# How to Convert API JSON Data to Excel Using Pandas (Python Tutorial)
+# How to Export API JSON Data to Excel Using Pandas
 
 import json
 import requests
