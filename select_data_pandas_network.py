@@ -7,11 +7,11 @@ from netmiko import ConnectHandler
 df = pd.read_excel(r"C:\Users\user\Desktop\ftc\Topics\Python\Projects\sdwan\devices.xlsx")
 
 # Strip column names and ensure all required columns are strings
-df.columns = df.columns.str.strip()
-df["hostname"] = df["hostname"].astype(str).str.strip()
-df["username"] = df["username"].astype(str)
-df["password"] = df["password"].fillna("").astype(str)
-df["device_type"] = df["device_type"].astype(str)
+df.columns = df.columns.str.strip() # run df.columns to see the space
+df["hostname"] = df["hostname"].astype(str).str.strip() # run df["hostname"].iloc[0] to the space
+df["username"] = df["username"].astype(str).str.strip() 
+df["password"] = df["password"].fillna("").astype(str).str.strip() # run df["password"].iloc[1] to the space
+df["device_type"] = df["device_type"].astype(str).str.strip()
 
 print("DataFrame loaded:")
 print(df, "\n")
@@ -25,6 +25,8 @@ df = df[["device_type", "hostname", "username", "password"]]
 # Step 3: Loop through devices
 # -------------------------------
 for index, row in df.iterrows():
+    print(type(row))
+    print(row)
     if row["hostname"] == "":
         print("Skipping a device with empty hostname...\n")
         continue
