@@ -1,7 +1,3 @@
-# -------------------------------
-# Pandas iterrows + Network Automation (Simple Tutorial)
-# -------------------------------
-
 # iterrows() → A DataFrame method that loops through the DataFrame row by row, returning each row as a horizontal Series.
 
 import pandas as pd
@@ -69,7 +65,7 @@ for index, row in df.iterrows():
             output = connection.send_command("show version")
 
         # Print preview
-        print(output[:200])
+        print(output)
 
     except Exception as e:
         print(f"Failed to connect to {hostname}: {e}")
