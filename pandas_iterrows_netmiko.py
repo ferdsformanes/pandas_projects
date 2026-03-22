@@ -2,6 +2,8 @@
 # Pandas iterrows + Network Automation (Simple Tutorial)
 # -------------------------------
 
+# iterrows() → A DataFrame method that loops through the DataFrame row by row, returning each row as a horizontal Series.
+
 import pandas as pd
 from netmiko import ConnectHandler
 
@@ -20,6 +22,8 @@ df["password"] = df["password"].fillna("")
 # for index, row in df.iterrows():
 #     index -> row number (0, 1, 2, ...)
 #     row   -> pandas Series (like a dictionary)
+#              • horizontal data (one row across columns)
+#              • similar to df.iloc[index]
 # Access values: row["column_name"]
 
 # Example:
