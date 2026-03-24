@@ -30,13 +30,7 @@ df_flat.to_excel("flat_data.xlsx", index=False)
 
 df_selected = df_flat[['name', 'email', 'address_city', 'company_name']]
 
-# Step 6: Rename Columns (Optional)
-df_selected.rename(columns={
-'address_city': 'city',
-'company_name': 'company'
-}, inplace=True)
-
-# Step 7: Final Output
+# Step 6: Final Output
 print(df_selected.head())
 
 
