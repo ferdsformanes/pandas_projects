@@ -4,8 +4,11 @@
 
 import pandas as pd
 
-# Load Excel file
-df = pd.read_excel("demo_missing_methods.xlsx")
+# -----------------------------------------------
+# Load Excel File
+# -----------------------------------------------
+
+df = pd.read_excel("sdwan_devices.xlsx")
 
 print(df.head())
 
@@ -15,18 +18,19 @@ print(df.head())
 # -----------------------------------------------
 
 print(df.isna())          # True/False mask
-print(df.isna().sum())   # Count per column
-
-print(df.notna())        # Opposite of isna()
+print(df.isna().sum())    # Count per column
+print(df.notna())         # Opposite of isna()
 
 
 # -----------------------------------------------
-# Handle Hidden Missing Values (Empty Strings)
+# Hidden Missing Values (Empty Strings)
 # -----------------------------------------------
 
-df = df.replace("", pd.NA)
+# NOTE:
+# Empty strings ("") are NOT considered missing by Pandas
+# We will handle this in a separate example
 
-print(df.isna().sum())   # Re-check after cleaning
+print(df.isna().sum())    # Still the same
 
 
 # -----------------------------------------------
@@ -45,9 +49,8 @@ print(df_drop_all)
 # -----------------------------------------------
 
 df_filled = df.fillna({
-    'city': 'Unknown',
-    'street': 'No Street',
-    'company_name': 'No Company'
+    'reachability': 'unknown',
+    'system-ip': '1.1.1.1',
 })
 
 print(df_filled)
@@ -57,7 +60,7 @@ print(df_filled)
 # Save Cleaned Data
 # -----------------------------------------------
 
-df_filled.to_excel("cleaned_missing_data.xlsx", index=False)
+df_filled.to_excel("cleaned_missing_data_sdwan_devices.xlsx", index=False)
 
 
 # -----------------------------------------------
@@ -65,6 +68,5 @@ df_filled.to_excel("cleaned_missing_data.xlsx", index=False)
 # -----------------------------------------------
 # isna()   → detect missing values
 # notna()  → detect valid values
-# replace("", pd.NA) → fix hidden missing data
 # dropna() → remove missing data
 # fillna() → replace missing values
