@@ -27,11 +27,13 @@ print(df.notna())         # Opposite of isna()
 # -----------------------------------------------
 
 # NOTE:
-# Empty strings ("") are NOT considered missing by Pandas
-# We will handle this in a separate example
+# Pandas does NOT consider empty cells that contain "" (empty string)
+# or only spaces ("   ") as missing values by default.
+# We replace them with pd.NA to mark them as true missing values.
+df = df.replace(r'^\s*$', pd.NA, regex=True)
 
-print(df.isna().sum())    # Still the same
-
+# Now these "hidden" missing values will be detected
+print(df.isna().sum())
 
 # -----------------------------------------------
 # Remove Missing Data
@@ -49,8 +51,10 @@ print(df_drop_all)
 # -----------------------------------------------
 
 df_filled = df.fillna({
+    'deviceId': 'unknown',
+    'system-ip': 'unknown',
     'reachability': 'unknown',
-    'system-ip': '1.1.1.1',
+
 })
 
 print(df_filled)
@@ -61,6 +65,8 @@ print(df_filled)
 # -----------------------------------------------
 
 df_filled.to_excel("cleaned_missing_data_sdwan_devices.xlsx", index=False)
+
+
 
 
 # -----------------------------------------------
