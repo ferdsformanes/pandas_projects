@@ -15,7 +15,7 @@ print(df)
 # Connect to PostgreSQL using SQLAlchemy
 # -----------------------------------------------
 
-# Format: postgresql+psycopg2://username:password@host:port/database
+# Format: dialect+connector://username:password@host:port/database
 engine = create_engine("postgresql+psycopg2://postgres:postgres@localhost:5433/testdb")
 
 # -----------------------------------------------
