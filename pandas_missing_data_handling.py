@@ -1,22 +1,16 @@
 # -----------------------------------------------
 # How Pandas Handles Missing Data
-# (None vs pd.NA vs Empty Strings vs null)
+# (Handling None, pd.NA, Empty Strings, and JSON null in Pandas)
 # -----------------------------------------------
 
 import pandas as pd
 import json
 
 # -----------------------------------------------
-# Create Example Data
+# Load Data from Excel File
 # -----------------------------------------------
 
-data = {
-    "col": ["text", "", None, pd.NA]
-}
-
-df = pd.DataFrame(data)
-
-print("Original DataFrame:")
+df = pd.read_excel("sdwan_devices.xlsx")
 print(df)
 
 
@@ -36,40 +30,33 @@ print(df_json)
 # Detect Missing Values
 # -----------------------------------------------
 
-print("\nMissing Value Mask (True = missing):")
 print(df.isna())
-
-print("\nCount of Missing Values per Column:")
 print(df.isna().sum())
-
-
-# -----------------------------------------------
-# Key Concept
-# -----------------------------------------------
-# None  → treated as missing
-# pd.NA → treated as missing
-# ""    → NOT treated as missing
-# null  → becomes None → treated as missing
 
 
 # -----------------------------------------------
 # Fix: Convert Empty Strings to Missing Values
 # -----------------------------------------------
 
-df = df.replace("", pd.NA)
-
-print("\nAfter Converting Empty Strings to pd.NA:")
-print(df.isna().sum())
+# Replace empty strings across ALL columns
+df = df.replace(r'^\s*$', pd.NA, regex=True)
+print(df.isna())
 
 
 # -----------------------------------------------
 # Fill Missing Values
 # -----------------------------------------------
 
-df["col"] = df["col"].fillna("Unknown")
-
-print("\nAfter Filling Missing Values:")
+# Fill missing values (generic approach for demo)
+df = df.fillna("Unknown")
 print(df)
+
+
+# -----------------------------------------------
+# Export Data to Excel File
+# -----------------------------------------------
+
+df.to_excel("sdwan_devices_cleaned.xlsx", index=False)
 
 
 # -----------------------------------------------
@@ -78,5 +65,5 @@ print(df)
 # None and pd.NA are considered missing values
 # JSON null becomes None in Python
 # Empty strings ("") are NOT missing by default
-# Use replace("", pd.NA) to handle empty strings
+# Use replace(r'^\s*$', pd.NA, regex=True) to handle empty strings
 # Use fillna() to fill missing values
