@@ -1,6 +1,6 @@
 # -----------------------------------------------
 # How Pandas Handles Missing Data
-# (Handling None, pd.NA, Empty Strings, and JSON null in Pandas)
+# (Handling None, pd.NA, NaN, Empty Strings, and JSON null in Pandas)
 # -----------------------------------------------
 
 import pandas as pd
