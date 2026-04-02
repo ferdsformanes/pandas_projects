@@ -1,5 +1,5 @@
 # -----------------------------------------------
-# JSON → Python Object → Pandas DataFrame → JSON
+# API (JSON) → Python Object → Pandas DataFrame → JSON
 # -----------------------------------------------
 
 import pandas as pd
@@ -47,18 +47,18 @@ if response.status_code != 200:
     raise Exception(f"Failed to retrieve devices: {response.status_code}")
 
 # -----------------------------------------------
-# Inspect RAW JSON (Before Conversion) & Save Pretty
+# Inspect RAW JSON (Before Conversion)
 # -----------------------------------------------
 
 print(type(response.text))   # str (raw JSON)
 
-# Parse the raw JSON string
+# Convert raw JSON string into dict
 parsed_json = json.loads(response.text)
 
-# Pretty-printing in terminal
+# Pretty-print in terminal
 print(json.dumps(parsed_json, indent=4))  
 
-# Save pretty JSON to file for inspection
+# Save as formatted JSON file
 with open("raw_sdwan_response.json", "w") as f:
     json.dump(parsed_json, f, indent=4)   
 
