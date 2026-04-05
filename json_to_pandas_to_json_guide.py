@@ -58,9 +58,7 @@ parsed_json = json.loads(response.text)
 # Pretty-print in terminal
 print(json.dumps(parsed_json, indent=4))  
 
-# Save as formatted JSON file
-with open("raw_sdwan_response.json", "w") as f:
-    json.dump(parsed_json, f, indent=4)   
+    
 
 # -----------------------------------------------
 # Convert JSON → Python Object (dict)
@@ -119,9 +117,6 @@ with open("sdwan_devices.json", "w") as f:
 # -----------------------------------------------
 # KEY TAKEAWAYS
 # -----------------------------------------------
-
-# session.post() → login (JSESSIONID)
-# session.get() → retrieve API data
 # response.text → raw JSON string (before conversion)
 # json.loads() → manually parse JSON
 # response.json() → JSON → Python dict
