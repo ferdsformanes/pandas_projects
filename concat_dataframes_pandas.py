@@ -1,5 +1,5 @@
 # -----------------------------------------------
-# Pandas Concat Explained (Combine DataFrames Easily)
+# Pandas Concat Function Explained (Combine DataFrames Easily)
 # -----------------------------------------------
 
 import pandas as pd
@@ -38,6 +38,8 @@ print(df_rows_reset)
 # Step 4: Column-wise Concatenation (axis=1)
 # -----------------------------------------------
 # Combines DataFrames side-by-side (adds columns)
+# IMPORTANT: axis=1 aligns rows by index, NOT by column values
+# If indexes don't match, you may get unexpected results
 df_cols = pd.concat([df1, df2], axis=1)
 print(df_cols)
 
