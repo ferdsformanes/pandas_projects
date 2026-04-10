@@ -29,7 +29,7 @@ print(df.dtypes)
 # -----------------------------------------------
 # int64    → integers
 # float64  → decimal numbers
-# object   → strings (text)
+# object   → strings (text)  # "object" means generic Python object (strings are objects in Python)
 # bool     → True/False
 
 # -----------------------------------------------
@@ -62,6 +62,7 @@ df3 = pd.DataFrame({
 })
 
 # Use to_numeric to handle errors
+# errors="coerce" → converts invalid values to NaN instead of crashing
 df3["price"] = pd.to_numeric(df3["price"], errors="coerce")
 
 print(df3)
@@ -75,3 +76,5 @@ print(df3)
 # 4. Use astype() to convert data types
 # 5. Use pd.to_numeric() for safer conversions
 # 6. errors="coerce" turns invalid values into NaN
+
+# Read https://pbpython.com/pandas_dtypes.html before making a video on this topic! It has great examples and explanations.
