@@ -91,7 +91,7 @@ print(df4.dtypes)
 # -----------------------------------------------
 # KEY TAKEAWAYS
 # -----------------------------------------------
-# 1. dtype tells you the type of data in each column
+# 1. dtypes tells you the type of data in each column
 # 2. Use df.dtypes to check column types
 # 3. Common types: int, float, object, bool, datetime64
 # 4. Use astype() to convert data types
