@@ -10,9 +10,10 @@ import pandas as pd
 # 1. Find lowest/highest values quickly
 # 2. Make data easier to read
 # 3. Prepare data for analysis
+# 4. Group related values together
 
 # -----------------------------------------------
-# Create Sample DataFrame
+# CREATE SAMPLE DATAFRAME
 # -----------------------------------------------
 data = {
     "device_id": [3, 1, 2],
@@ -22,64 +23,53 @@ data = {
 }
 
 df = pd.DataFrame(data)
-
 print(df)
 
 # -----------------------------------------------
-# sort_values() - Sort by column values
+# sort_values() - SORT BY COLUMN VALUES
 # -----------------------------------------------
-# Sort by price (ascending by default)
-df_sorted = df.sort_values(by="price")
 
-# Notice: index stays from original DataFrame
-print(df_sorted)
+# Sort by price (ascending)
+df.sort_values(by="price", inplace=True)
+print(df)
 
-# Sort by price descending
-df_sorted_desc = df.sort_values(by="price", ascending=False)
+# Sort by price (descending)
+df.sort_values(by="price", ascending=False, inplace=True)
+print(df)
 
-print(df_sorted_desc)
-
-# -----------------------------------------------
 # Sort by multiple columns
-# -----------------------------------------------
-df_multi_sort = df.sort_values(by=["price", "device_name"])
-
-print(df_multi_sort)
+df.sort_values(by=["price", "device_name"], inplace=True)
+print(df)
 
 # -----------------------------------------------
-# Sort by IP address (string-based sorting)
+# RESET INDEX (IMPORTANT AFTER sort_values)
 # -----------------------------------------------
-df_ip_sorted = df.sort_values(by="ip_address")
-
-print(df_ip_sorted)
-
-# -----------------------------------------------
-# Reset index after sorting (common practice)
-# -----------------------------------------------
-df_clean = df.sort_values(by="price").reset_index(drop=True)
-
-print(df_clean)
+df.reset_index(drop=True, inplace=True)
+print(df)
 
 # -----------------------------------------------
-# sort_index() - Sort by index
+# sort_index() (ROW INDEX SORTING)
 # -----------------------------------------------
-df_index_sorted = df_sorted.sort_index()
+# First, create a messy index to make the effect visible
+df.index = [10, 5, 20]
+print(df)
 
-print(df_index_sorted)
+# Now sort by index
+df.sort_index(inplace=True)
+print(df)
 
 # -----------------------------------------------
-# sort_index(axis=1) - Sort columns
+# sort_index(axis=1) - SORT COLUMN NAMES
 # -----------------------------------------------
-df_column_sorted = df.sort_index(axis=1)
-
-print(df_column_sorted)
+df.sort_index(axis=1, inplace=True)
+print("\nColumns sorted alphabetically:")
+print(df)
 
 # -----------------------------------------------
 # KEY TAKEAWAYS
 # -----------------------------------------------
-# 1. sort_values() → sorts data based on column values
-# 2. sort_index() → sorts based on index (rows)
+# 1. sort_values() → sorts based on column values
+# 2. sort_index() → sorts based on row index
 # 3. sort_index(axis=1) → sorts column names
-# 4. ascending=False → descending order
-# 5. You can sort by multiple columns
-# 6. reset_index() → fixes messy index after sorting
+# 4. inplace=True → modifies original DataFrame
+# 5. reset_index(drop=True) → resets index after sorting
