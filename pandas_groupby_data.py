@@ -6,7 +6,7 @@
 # WHAT IS groupby()?
 # -----------------------------------------------
 # groupby() is a Pandas method used to split data into groups
-# based on a column, then apply calculations like sum, mean, or count.
+# based on one or more columns, then apply aggregations such as sum, mean, or count.
 
 # -----------------------------------------------
 # Import pandas library
