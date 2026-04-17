@@ -63,7 +63,7 @@ print(grouped)
 # SORT GROUPED DATA
 # -----------------------------------------------
 
-grouped = df.groupby("device_name")["cost"].mean().sort_values(ascending=False)
+grouped = df.groupby("device_name")["cost"].mean().sort_values(ascending=False).reset_index()
 print(grouped)
 
 # -----------------------------------------------
@@ -71,12 +71,10 @@ print(grouped)
 # -----------------------------------------------
 
 # Total cost per site (budget tracking)
-site_cost = df.groupby("site")["cost"].sum()
-print("\nTotal cost per site:\n", site_cost)
+site_cost = df.groupby("site")["cost"].sum().reset_index()
 
 # Average vendor cost (compare vendors)
-vendor_cost = df.groupby("vendor")["cost"].mean()
-print("\nAverage cost per vendor:\n", vendor_cost)
+vendor_cost = df.groupby("vendor")["cost"].mean().reset_index()
 
 # -----------------------------------------------
 # KEY TAKEAWAYS
