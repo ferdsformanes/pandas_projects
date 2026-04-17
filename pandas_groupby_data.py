@@ -85,4 +85,4 @@ print("\nAverage cost per vendor:\n", vendor_cost)
 # 2. Then you can apply aggregate functions like sum(), mean(), count()
 # 3. agg() method allows multiple calculations at once
 # 4. You can group by multiple columns
-# 5. reset_index() method makes output cleaner
+# 5. reset_index() is used to keep the result clean and tabular.
