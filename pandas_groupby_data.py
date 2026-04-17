@@ -33,7 +33,7 @@ print(df)
 # -----------------------------------------------
 # BASIC GROUPBY (Single Column)
 # -----------------------------------------------
-
+# NOTE: groupby() moves the grouping column(s) into the index by default
 grouped = df.groupby("device_name")["cost"].mean()
 print(grouped)
 
@@ -59,6 +59,17 @@ print(grouped)
 grouped = df.groupby("device_name")["cost"].mean().reset_index()
 print(grouped)
 
+
+# -----------------------------------------------
+# ALTERNATIVE: as_index=False
+# -----------------------------------------------
+
+# Instead of calling reset_index(), you can prevent the group key
+# from becoming the index by setting as_index=False
+grouped = df.groupby("device_name", as_index=False)["cost"].mean()
+print(grouped)
+
+
 # -----------------------------------------------
 # SORT GROUPED DATA
 # -----------------------------------------------
@@ -83,4 +94,4 @@ vendor_cost = df.groupby("vendor")["cost"].mean().reset_index()
 # 2. Then you can apply aggregate functions like sum(), mean(), count()
 # 3. agg() method allows multiple calculations at once
 # 4. You can group by multiple columns
-# 5. reset_index() is used to keep the result clean and tabular.
+# 5. reset_index() or as_index=False is used to keep grouped results clean and tabular
