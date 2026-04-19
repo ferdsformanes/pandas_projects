@@ -14,7 +14,7 @@
 import pandas as pd
 
 # Make float output cleaner (apply globally)
-pd.options.display.float_format = '{:.0f}'.format
+pd.options.display.float_format = '{:.2f}'.format
 
 # -----------------------------------------------
 # CREATE SAMPLE DATAFRAME
