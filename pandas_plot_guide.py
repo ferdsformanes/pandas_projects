@@ -96,4 +96,3 @@ plt.show()
 # 2. Use kind="bar", "line", "pie" for different charts
 # 3. groupby() + plot() is powerful for analysis
 # 4. plt.show() displays the chart
-# 5. Charts help turn data into insights quickly
