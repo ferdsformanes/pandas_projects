@@ -30,7 +30,7 @@ df = pd.DataFrame(data)
 print(df)
 
 # -----------------------------------------------
-# BASIC PLOT (LINE CHART)
+# BASIC PLOT (LINE CHART: DEFAULT PLOT TYPE IN PANDAS)
 # -----------------------------------------------
 
 # Plot cost over index
