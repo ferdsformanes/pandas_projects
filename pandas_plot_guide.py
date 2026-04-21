@@ -34,6 +34,7 @@ print(df)
 # -----------------------------------------------
 
 # Plot cost over index
+# Note: X-axis uses the DataFrame index by default
 df["cost"].plot()
 plt.title("Device Cost Trend")
 plt.show()
@@ -71,7 +72,7 @@ plt.show()
 # Cost distribution per vendor
 vendor_cost = df.groupby("vendor")["cost"].sum()
 
-vendor_cost.plot(kind="pie", autopct='%1.1f%%')
+vendor_cost.plot(kind="pie", autopct='%1.1f%%')  # show percentage labels with 1 decimal place
 plt.title("Cost Distribution per Vendor")
 plt.ylabel("")  # cleaner look
 plt.show()
@@ -81,6 +82,7 @@ plt.show()
 # -----------------------------------------------
 
 # Cost per device per site
+# unstack() moves "site" from the index into columns for easier plotting
 multi = df.groupby(["device_name", "site"])["cost"].sum().unstack()
 
 multi.plot(kind="bar")
