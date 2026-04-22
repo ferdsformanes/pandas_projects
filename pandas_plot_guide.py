@@ -5,15 +5,18 @@
 # -----------------------------------------------
 # WHAT IS plot()?
 # -----------------------------------------------
-# plot() is a Pandas method used to visualize data quickly.
-# It allows you to create charts like line, bar, and pie
-# directly from a DataFrame or Series.
+# plot() is a Pandas method used to quickly visualize data.
+# It uses matplotlib behind the scenes to create charts
+# like line, bar, and pie directly from your data.
 
 # -----------------------------------------------
 # Import libraries
 # -----------------------------------------------
 import pandas as pd
 import matplotlib.pyplot as plt
+
+# Note: In Jupyter Notebook, plots may display automatically.
+# In scripts (VS Code, .py files), plt.show() is required.
 
 # -----------------------------------------------
 # CREATE SAMPLE DATAFRAME
@@ -35,9 +38,9 @@ print(df)
 
 # Plot cost over index
 # Note: X-axis uses the DataFrame index by default
-df["cost"].plot()
-plt.title("Device Cost Trend")
-plt.show()
+df["cost"].plot()  # Creates the chart using pandas (internally uses matplotlib)
+plt.title("Device Cost Trend")  # Adds title to the current active plot
+plt.show()  # Displays the chart (matplotlib shows whatever was already created)
 
 # -----------------------------------------------
 # BAR CHART (VERY COMMON)
@@ -46,11 +49,11 @@ plt.show()
 # Total cost per device
 device_cost = df.groupby("device_name")["cost"].sum()
 
-device_cost.plot(kind="bar")
-plt.title("Total Cost per Device Type")
-plt.xlabel("Device Type")
-plt.ylabel("Total Cost")
-plt.show()
+device_cost.plot(kind="bar")  # Creates the bar chart using pandas (uses matplotlib internally)
+plt.title("Total Cost per Device Type")  # Adds title to the current active plot
+plt.xlabel("Device Type")  # Labels the x-axis of the current plot
+plt.ylabel("Total Cost")  # Labels the y-axis of the current plot
+plt.show()  # Displays the chart (matplotlib shows whatever was already created)
 
 # -----------------------------------------------
 # BAR CHART (PER SITE)
@@ -59,11 +62,11 @@ plt.show()
 # Total cost per site
 site_cost = df.groupby("site")["cost"].sum()
 
-site_cost.plot(kind="bar")
-plt.title("Total Cost per Site")
-plt.xlabel("Site")
-plt.ylabel("Total Cost")
-plt.show()
+site_cost.plot(kind="bar")  # Creates bar chart from grouped data
+plt.title("Total Cost per Site")  # Adds title to the current active plot
+plt.xlabel("Site")  # Labels the x-axis
+plt.ylabel("Total Cost")  # Labels the y-axis
+plt.show()  # Displays the chart
 
 # -----------------------------------------------
 # PIE CHART (DISTRIBUTION)
@@ -72,24 +75,25 @@ plt.show()
 # Cost distribution per vendor
 vendor_cost = df.groupby("vendor")["cost"].sum()
 
-vendor_cost.plot(kind="pie", autopct='%1.1f%%')  # show percentage labels with 1 decimal place
-plt.title("Cost Distribution per Vendor")
-plt.ylabel("")  # cleaner look
-plt.show()
+vendor_cost.plot(kind="pie", autopct='%1.1f%%')  # Creates pie chart and shows percentage labels
+plt.title("Cost Distribution per Vendor")  # Adds title
+plt.ylabel("")  # Removes y-label for cleaner look
+plt.show()  # Displays the chart
 
 # -----------------------------------------------
 # MULTI-COLUMN GROUP + PLOT
 # -----------------------------------------------
 
 # Cost per device per site
-# unstack() moves "site" from the index into columns for easier plotting
+# unstack() moves "site" from rows into columns,
+# making the data easier to visualize as grouped bars
 multi = df.groupby(["device_name", "site"])["cost"].sum().unstack()
 
-multi.plot(kind="bar")
-plt.title("Cost per Device per Site")
-plt.xlabel("Device Type")
-plt.ylabel("Cost")
-plt.show()
+multi.plot(kind="bar")  # Creates grouped bar chart
+plt.title("Cost per Device per Site")  # Adds title
+plt.xlabel("Device Type")  # Labels the x-axis
+plt.ylabel("Cost")  # Labels the y-axis
+plt.show()  # Displays the chart
 
 # -----------------------------------------------
 # KEY TAKEAWAYS
@@ -98,3 +102,4 @@ plt.show()
 # 2. Use kind="bar", "line", "pie" for different charts
 # 3. groupby() + plot() is powerful for analysis
 # 4. plt.show() displays the chart
+# 5. Pandas handles the data, matplotlib handles the visualization
